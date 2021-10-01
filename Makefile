@@ -9,10 +9,10 @@ validate:
 	terraform -chdir=terraform validate
 
 plan:
-	terraform -chdir=terraform plan -var-file=secret.tfvars
+	terraform -chdir=terraform plan
 
 apply:
-	terraform -chdir=terraform apply -var-file=secret.tfvars
+	terraform -chdir=terraform apply
 
 destroy:
-	terraform -chdir=terraform destroy -var-file=secret.tfvars
+	terraform -chdir=terraform destroy
