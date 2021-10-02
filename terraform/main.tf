@@ -18,7 +18,7 @@ resource "digitalocean_droplet" "vms" {
 }
 
 resource "digitalocean_domain" "domain" {
-  name = "03bite-me.xyz"
+  name = "hexlet-sergiy.club"
 }
 
 resource "digitalocean_record" "static" {
@@ -29,7 +29,7 @@ resource "digitalocean_record" "static" {
 }
 
 resource "digitalocean_certificate" "cert" {
-  name    = "project-three-cert"
+  name    = "ssl-cert"
   type    = "lets_encrypt"
   domains = [digitalocean_domain.domain.name]
 }
