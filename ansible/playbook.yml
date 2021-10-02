@@ -1,0 +1,22 @@
+- name: Deploy react_tic_tac_toe to remote hosts
+  hosts: all
+  gather_facts: yes
+
+  tasks:
+    - name: Install pip package manager to get python modules
+      ansible.builtin.apt:
+        name: python3-pip
+        update_cache: yes
+
+    - name: Install Docker Module for Python
+      ansible.builtin.pip:
+        name: docker
+
+    - name: Get React_Tic_Tac_Toe container and run it
+      community.docker.docker_container:
+        name: react_tic_tac_toe
+        image: 4132043212/react_tic_tac_toe
+        published_ports:
+         - 3000:3000
+        restart_policy: always
+        restart: yes
