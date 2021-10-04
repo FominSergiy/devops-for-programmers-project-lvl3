@@ -1,0 +1,11 @@
+datadog_api_key: "{{ vault_datadog_api_key }}"
+datadog_site: "datadoghq.com"
+
+datadog_checks:
+  http_check:
+    init_config:
+    instances:
+      - name: Http Health Check
+        url: "http://{{ ansible_facts['default_ipv4']['address'] }}:3000"
+        timeout: 5
+        method: GET

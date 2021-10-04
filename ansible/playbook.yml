@@ -20,3 +20,9 @@
          - 3000:3000
         restart_policy: always
         restart: yes
+
+- name: Setup Datagog health checks on webservers
+  hosts: webservers
+  gather_facts: no
+  roles:
+    - { role: datadog.datadog, become: yes }
