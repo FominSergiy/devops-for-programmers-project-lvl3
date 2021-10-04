@@ -29,7 +29,7 @@ resource "digitalocean_record" "static" {
 }
 
 resource "digitalocean_certificate" "cert" {
-  name    = "ssl-cert"
+  name    = "my-cert"
   type    = "lets_encrypt"
   domains = [digitalocean_domain.domain.name]
 }
@@ -78,4 +78,33 @@ resource "digitalocean_database_cluster" "postgres-db-cluster" {
 resource "digitalocean_database_db" "db" {
   cluster_id = digitalocean_database_cluster.postgres-db-cluster.id
   name       = "db"
+}
+
+resource "datadog_monitor" "http_monitor" {
+  name    = "Http Health Check Alert"
+  type    = "service check"
+  message = "@all"
+
+  query = "\"http.can_connect\".over(\"instance:http_health_check\").by(\"host\",\"instance\",\"url\").last(4).count_by_status()"
+
+  monitor_thresholds {
+    warning  = 1
+    ok       = 1
+    critical = 3
+  }
+
+  notify_no_data    = true
+  no_data_timeframe = 2
+  renotify_interval = 0
+  new_group_delay   = 60
+
+  notify_audit = false
+  locked       = false
+
+  timeout_h    = 60
+  include_tags = true
+
+  priority = 5
+
+  tags = ["dev-project"]
 }
