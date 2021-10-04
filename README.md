@@ -14,15 +14,39 @@ I am using DigitalOcean to host my servers. For your vm **make sure you use imag
 
 # Prepare Your Project
 
+## Terraform
 
-- save `secret.auto.tfvars` in `./terraform/` folder, which will contain your `DO_PAT` which will be used to authenticate to DO
-- [get-do-api-key](https://hostlaunch.io/docs/how-to-get-a-digitalocean-api-key/)
+- save `secret.auto.tfvars` in `./terraform/` folder, which will contain your
+  - `do_token`: [do-api-key](https://hostlaunch.io/docs/how-to-get-a-digitalocean-api-key/)
+  - `datadog_api_key`: [datadog-api-key](https://docs.datadoghq.com/account_management/api-app-keys/)
+  - `datadog_app_key`: [datadog-app-key](https://docs.datadoghq.com/account_management/api-app-keys/#application-keys)
 - to use remote backend
-    - create free account with Terraform `https://app.terraform.io/app`
-    - once account is created, follow the instructions on **getting started** page
-    - create an organization and select the `run terraform commands from local cli` option
-    - create a workspcae and follow instructions
-    - change **organization** and **workspaces** inside the `backend.tf` file to what you have set them up in your account
+  - create free account with Terraform `https://app.terraform.io/app`
+  - once account is created, follow the instructions on **getting started** page
+  - create an organization and select the `run terraform commands from local cli` option
+  - create a workspcae and follow instructions
+  - change **organization** and **workspaces** inside the `backend.tf` file to what you have set them up in your account
+
+## Ansible
+
+- create `vault_password` file that you will be using to decrypt/encrypt your digital ocean token in Ansible.
+
+```Bash
+$ make create-vault-pass
+```
+
+- empty contents of `/ansible/group_vars/webservers/datadog.yml` file and replace it with your `do_token`.
+
+```yml
+vault_datadog_api_key : "your-do_token-here"
+```
+
+Once it's set, encrypt the file
+
+```Bash
+$ make encrypt
+```
+
 - run to install required roles/collections for ansible
 
 ```bash
