@@ -65,21 +65,6 @@ resource "digitalocean_loadbalancer" "lb" {
   droplet_ids = digitalocean_droplet.vms[*].id
 }
 
-# adding in a db cluster
-resource "digitalocean_database_cluster" "postgres-db-cluster" {
-  name       = "postgres-cluster"
-  engine     = "pg"
-  version    = "11"
-  size       = "db-s-1vcpu-1gb"
-  region     = "nyc1"
-  node_count = 1
-}
-
-resource "digitalocean_database_db" "db" {
-  cluster_id = digitalocean_database_cluster.postgres-db-cluster.id
-  name       = "db"
-}
-
 resource "datadog_monitor" "http_monitor" {
   name    = "Http Health Check Alert"
   type    = "service check"
