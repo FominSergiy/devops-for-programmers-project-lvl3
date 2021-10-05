@@ -61,6 +61,7 @@ $ make install
 --/
   |__terraform/   ---> dir contains IaC deployed for this app
   |__ansible/     ---> dir contains deployment configs for an app to VMs defined in **inventory.ini**
+  |__Makefile     ---> file with commands to set up infra, deploy playbook, and work with vault
 
 ```
 

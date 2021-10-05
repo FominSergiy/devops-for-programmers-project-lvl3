@@ -1,4 +1,4 @@
-- name: Deploy react_tic_tac_toe to remote hosts
+- name: Config remote hosts
   hosts: all
   gather_facts: yes
 
