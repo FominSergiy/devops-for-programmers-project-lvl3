@@ -12,6 +12,10 @@
       ansible.builtin.pip:
         name: docker
 
+    - name: Install module that needed for old ansible versions
+      ansible.builtin.pip:
+        name: pan-os-python
+
     - name: Get React_Tic_Tac_Toe container and run it
       community.docker.docker_container:
         name: react_tic_tac_toe
