@@ -20,6 +20,8 @@ I am using DigitalOcean to host my servers. For your vm **make sure you use imag
   - `do_token`: [do-api-key](https://hostlaunch.io/docs/how-to-get-a-digitalocean-api-key/)
   - `datadog_api_key`: [datadog-api-key](https://docs.datadoghq.com/account_management/api-app-keys/)
   - `datadog_app_key`: [datadog-app-key](https://docs.datadoghq.com/account_management/api-app-keys/#application-keys)
+- change name property in `digitalocean_ssh_key` terraform data block to the name of your ssh key in DO
+  - [do_ssh_key](https://docs.digitalocean.com/products/droplets/how-to/add-ssh-keys/)
 - to use remote backend
   - create free account with Terraform `https://app.terraform.io/app`
   - once account is created, follow the instructions on **getting started** page
@@ -73,7 +75,7 @@ $ make init
 $ make plan
 $ make apply
 ```
-2. once infra is setup, take note of ip addresses in the terraform `output` block. copy them over to `inventory.ini`
+2. once infra is setup, take note of ip addresses in the terraform `output` block in the terminal. copy them over to `inventory.ini`
 3. run `make deploy` command to set-up your vms with *react_tic_toe* app.
 
 ```bash
@@ -82,4 +84,4 @@ $ make deploy
 
 # deployed app
 
-`hexlet-sergiy.club`
+`https://hexlet-sergiy.club`
