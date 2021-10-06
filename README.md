@@ -12,6 +12,16 @@ I am using DigitalOcean to host my servers. For your vm **make sure you use imag
 - [digitalOcean](https://www.digitalocean.com/)
 - [vm-image](https://marketplace.digitalocean.com/apps/docker)
 
+# Repo Structure
+
+```
+--/
+  |__terraform/   ---> dir contains IaC deployed for this app
+  |__ansible/     ---> dir contains deployment configs for an app to VMs defined in **inventory.ini**
+  |__Makefile     ---> file with commands to set up infra, deploy playbook, and work with vault
+
+```
+
 # Prepare Your Project
 
 ## Terraform
@@ -53,16 +63,6 @@ $ make encrypt
 
 ```bash
 $ make install
-```
-
-# Repo Structure
-
-```
---/
-  |__terraform/   ---> dir contains IaC deployed for this app
-  |__ansible/     ---> dir contains deployment configs for an app to VMs defined in **inventory.ini**
-  |__Makefile     ---> file with commands to set up infra, deploy playbook, and work with vault
-
 ```
 
 # How to use
