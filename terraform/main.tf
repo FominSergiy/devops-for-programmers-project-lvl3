@@ -1,9 +1,6 @@
 # Configure the DigitalOcean Provider
-provider "digitalocean" {
-  token = var.do_token
-}
 
-data "digitalocean_ssh_key" "hexlet" {
+data "digitalocean_ssh_key" "ssh_key" {
   name = "macOs-key"
 }
 
@@ -14,14 +11,14 @@ resource "digitalocean_droplet" "vms" {
   name     = "third-project-0${count.index}"
   region   = "ams3"
   size     = "s-1vcpu-1gb"
-  ssh_keys = [data.digitalocean_ssh_key.hexlet.id]
+  ssh_keys = [data.digitalocean_ssh_key.ssh_key.id]
 }
 
 resource "digitalocean_domain" "domain" {
   name = "hexlet-sergiy.club"
 }
 
-resource "digitalocean_record" "static" {
+resource "digitalocean_record" "static_domain_record" {
   domain = digitalocean_domain.domain.name
   type   = "A"
   name   = "@"

@@ -82,7 +82,3 @@ $ make apply
 ```bash
 $ make deploy
 ```
-
-# deployed app
-
-`https://hexlet-sergiy.club`

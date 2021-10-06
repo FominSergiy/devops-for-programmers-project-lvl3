@@ -10,6 +10,9 @@ terraform {
     }
   }
 }
+provider "digitalocean" {
+  token = var.do_token
+}
 
 provider "datadog" {
   api_key = var.datadog_api_key
