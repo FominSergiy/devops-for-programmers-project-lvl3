@@ -20,7 +20,7 @@
          - 3000:3000
         restart_policy: always
         restart: yes
-        container_default_behavior: no_default
+        container_default_behavior: no_defaults
 
 - name: Setup Datagog health checks on webservers
   hosts: webservers
