@@ -21,8 +21,8 @@ destroy:
 create-vault-pass:
 	touch ansible/vault_password
 
-# datadog.yml or vault.yml
-FILE=datadog.yml
+
+FILE=vault.yml
 
 # ansible-vault
 encrypt:
